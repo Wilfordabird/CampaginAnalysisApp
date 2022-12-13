@@ -1,0 +1,5 @@
+streamlit
+pandas
+googletrans==3.1.0a0
+vaderSentiment
+nltk 

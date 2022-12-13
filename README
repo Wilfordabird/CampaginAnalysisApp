@@ -1,0 +1,17 @@
+**How to use on a local machine**
+*Created by EJ Wilford*
+
+1. Create a python virtual enviorment
+#Windows
+python -m venv (env name)
+(env name)/Scripts/activate.bat or (env name)/Scripts/activate.ps1
+
+2. install dependencies: found at top of file
+
+3. Create a folder called "campaigns" with a collection of xlsx files you want to be analyzed:
+    Required: 2 Headers "Name" and "Comment" on the first line of the file
+
+4. Click run on the campaign-analysis.py and watch as a new folder -- analysis -- is created with the collection of files wanted
+    Contains: positive, negative, and all sentiment reading files for all given campaigns as well as
+        analysis.txt which will list important points of analysis from each file it reads incluing most popular positive and negative words
+
