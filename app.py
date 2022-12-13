@@ -43,11 +43,16 @@ def analysis(file):
                 if comment != "\n":
                     try:
                         language = translator.detect(comment).lang
+                        if len(language) > 1:
+                            language = language[0]
                         translated = translator.translate(text = comment, src = language, dest = "en").text
+                        
                     except Exception as e:
                         print(e)
                         print(language)
                         try:
+                            if len(language) > 1:
+                                language = language[0]
                             translated = translator.translate(text = comment, src = "id", dest = "en").text
                         except Exception as e:
                             translated = comment
@@ -59,6 +64,8 @@ def analysis(file):
                 #translate the comment from indonesian to english
                 try:
                     language = translator.detect(comment).lang
+                    if len(language) > 1:
+                        language = language[0]
                     translated = translator.translate(text = comment, src = language, dest = "en").text
                 except Exception as e:
                     print(e)
