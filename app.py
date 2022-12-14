@@ -25,7 +25,7 @@ translator = Translator()
 
 def analysis(file):
     
-    df = pd.read_excel(file, header=0, names=['Name', 'Comment'])
+    df = pd.read_excel(file, header=0, names=['User', 'Comment'])
         #for every row in the dataframe
         #add a new column called Translation
     # create a progress bar that goes through the length of the file
@@ -36,7 +36,7 @@ def analysis(file):
 
     for index, row in df.iterrows():
         #if the name is not empty and the comment is not empty increase the counter by 1
-        if row['Name'] and row['Comment']:
+        if row['User'] and row['Comment']:
             #translate the comment from indonesian to english
             comment = str(row['Comment'])
             try:
@@ -87,12 +87,14 @@ def analysis(file):
         
         my_bar.progress(index/len(df))
     df['sentiment'] = ['positive' if c > 0.05 else 'negative' if c < -.05 else 'neutral' for c in df['compound']]
+    # remove the first column
+    df = df.drop(df.columns[0], axis=1)
     return df
 # Create a title and sub-title
 st.image("YIGH-Blue.png")
 st.title("Campaign Analysis Tool")
 st.subheader("This tool will help you analyze your campaign performance")
-st.write("Just upload your excel file below with the following columns: 'Name' , 'Comment'")
+st.write("Just upload your excel file below with the following columns: 'User' , 'Comment'")
 
 # Create a place to upload a file
 uploaded_file = st.file_uploader("Choose a file")
